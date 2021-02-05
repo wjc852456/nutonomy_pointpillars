@@ -104,7 +104,9 @@ def save(model_dir,
                 min_step = min([get_step(name) for name in all_ckpts])
                 ckpt_to_delete = "{}-{}.tckpt".format(model_name, min_step)
                 all_ckpts.remove(ckpt_to_delete)
-            os.remove(str(Path(model_dir) / ckpt_to_delete))
+            ckpt_file = str(Path(model_dir) / ckpt_to_delete)
+            if os.path.exists(ckpt_file):
+                os.remove(ckpt_file)
         all_ckpts_filename = _ordered_unique([Path(f).name for f in all_ckpts])
         ckpt_info_dict['all_ckpts'][model_name] = all_ckpts_filename
         with open(ckpt_info_path, 'w') as f:

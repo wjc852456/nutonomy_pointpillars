@@ -766,7 +766,7 @@ class VoxelNet(nn.Module):
         # else:
         #     batch_anchors_mask = example["anchors_mask"].view(batch_size, -1)
         assert 15==len(example), "somthing write with example size!"
-        batch_anchors_mask = example[10].view(batch_size, -1)
+        batch_anchors_mask = example[10].view(batch_size, -1).bool()
         # batch_imgidx = example['image_idx']
         batch_imgidx = example[14]
 
